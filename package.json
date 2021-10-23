@@ -8,6 +8,8 @@
   "description": "Wrapper around React router DOM to achieve public/private routes and configuration-based routing.",
   "main": "index.js",
   "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jimmy Lan",
