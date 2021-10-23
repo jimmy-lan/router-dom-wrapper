@@ -1,0 +1,11 @@
+{
+  "name": "@ly-public/router-dom-wrapper",
+  "version": "0.1.0",
+  "description": "Wrapper around React router DOM to achieve public/private routes and configuration-based routing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jimmy Lan",
+  "license": "MIT"
+}
