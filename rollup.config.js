@@ -6,7 +6,7 @@ import styles from "rollup-plugin-styles";
 
 import pkg from "./package.json";
 
-const input = "src/index.ts";
+const input = "src/index.tsx";
 
 const banner = `/*! *****************************************************************************
  * router-dom-wrapper v${pkg.version}
