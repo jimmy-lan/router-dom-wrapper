@@ -1,6 +1,9 @@
 {
   "name": "@ly-public/router-dom-wrapper",
   "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/lanyanxiang/router-dom-wrapper"
