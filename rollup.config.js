@@ -28,8 +28,8 @@ export default [
   {
     input,
     output: {
-      name: "InteractiveBlocks",
-      file: "dist/interactive-blocks.js",
+      name: "RouterDomWrapper",
+      file: "dist/index.js",
       indent: false,
       format: "iife",
       sourcemap: true,
@@ -59,8 +59,8 @@ export default [
   {
     input,
     output: {
-      name: "InteractiveBlocks",
-      file: "dist/interactive-blocks.min.js",
+      name: "RouterDomWrapper",
+      file: "dist/index.min.js",
       indent: false,
       format: "iife",
       sourcemap: true,
