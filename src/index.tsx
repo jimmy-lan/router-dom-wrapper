@@ -4,8 +4,8 @@ interface Props {}
 
 type IndexProps = Props;
 
-const Index: FunctionComponent<IndexProps> = (props) => {
+const Welcome: FunctionComponent<IndexProps> = (props) => {
   return <div>Hello from Router Dom Wrapper!</div>;
 };
 
-export { Index };
+export { Welcome };
