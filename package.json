@@ -1,7 +1,10 @@
 {
   "name": "@ly-public/router-dom-wrapper",
   "version": "0.1.0",
-  "repository": "https://github.com/lanyanxiang/router-dom-wrapper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lanyanxiang/router-dom-wrapper"
+  },
   "description": "Wrapper around React router DOM to achieve public/private routes and configuration-based routing.",
   "main": "index.js",
   "scripts": {
