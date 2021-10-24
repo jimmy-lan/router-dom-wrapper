@@ -1,0 +1,37 @@
+# Linting and prettifying code on pull requests
+name: CI - Lint
+
+on:
+  pull_request_target:
+    branches:
+      - master
+      - develop
+
+jobs:
+  eslint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out Habits CLI code
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.17.6
+      - name: Run ESLint
+        run: npm run lint
+
+  prettier:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out Habits CLI code
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.17.6
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.0
+        with:
+          dry: true
+          only_changed: true
+          prettier_options: --check
