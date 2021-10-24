@@ -1,1 +1,1 @@
-export * from "./RoutePermissionProvider";
+export * from "./permissionsContext";
