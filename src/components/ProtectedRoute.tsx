@@ -1,5 +1,6 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { Route, RouteProps, Redirect, useHistory } from "react-router-dom";
+import { usePermissionsContext } from "../hooks";
 
 interface ProtectedRouteProps extends RouteProps {
   /**
@@ -45,15 +46,13 @@ const ProtectedRoute: FunctionComponent<Props> = (
   props: PropsWithChildren<ProtectedRouteProps>
 ) => {
   const { children, redirectUrl, ...otherProps } = props;
-  // TODO Call a pre-configured verify permission helper passed
-  //  in by the user to determine if the user is authenticated.
-  const isAuthenticated = true;
+  const { isAuthenticated } = usePermissionsContext();
 
   const { location } = useHistory();
 
   return (
     <Route {...otherProps}>
-      {isAuthenticated ? (
+      {isAuthenticated() ? (
         children
       ) : (
         <Redirect
