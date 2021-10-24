@@ -14,7 +14,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "npm run clean && tsc -p .",
+    "build": "npm run clean && tsc -p . && cp LICENSE ./dist",
     "clean": "del ./dist/*",
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
