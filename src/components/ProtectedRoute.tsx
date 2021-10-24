@@ -16,7 +16,7 @@ type Props = ProtectedRouteProps;
 /**
  * A route where the user must be authenticated to access. If the user is
  * not authenticated and attempted to access this route, the user will be
- * redirected. <br/>
+ * redirected to `redirectUrl` that you specified.
  *
  * When redirected, `state` key in the location descriptor will be updated to
  * include the location that the user attempted to visit. You can access
@@ -24,7 +24,21 @@ type Props = ProtectedRouteProps;
  * You can read more about how the location descriptor looks like using this
  * link {@link https://reactrouter.com/web/api/location}.
  *
- * @param props See {@link ProtectedRouteProps}.
+ * For example, you can show a "LogIn" component on URL `redirectUrl`. In your
+ * "LogIn" component, you can tell where the user was redirected from by using
+ * the following:
+ *
+ * ```
+ * const descriptor = useLocation<{ from: string }>();
+ * if (descriptor.state?.from) {
+ *   console.log(`You were redirected from the URL ${descriptor.state.from}.`)
+ * } else {
+ *   console.log("You came directly to this component.")
+ * }
+ * ```
+ *
+ * @constructor
+ * @param {ProtectedRouteProps} props
  * @see https://reactrouter.com/web/api/location
  */
 const ProtectedRoute: FunctionComponent<Props> = (
