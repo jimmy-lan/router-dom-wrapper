@@ -15,7 +15,7 @@ jobs:
   eslint:
     runs-on: ubuntu-20.04
     steps:
-      - name: Check out Habits CLI code
+      - name: Check out code
         uses: actions/checkout@v1
       - name: Setup Node.js
         uses: actions/setup-node@v1
@@ -30,7 +30,7 @@ jobs:
   prettier:
     runs-on: ubuntu-20.04
     steps:
-      - name: Check out Habits CLI code
+      - name: Check out code
         uses: actions/checkout@v1
       - name: Setup Node.js
         uses: actions/setup-node@v1
