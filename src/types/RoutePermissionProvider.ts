@@ -1,1 +1,1 @@
-export type isAuthenticatedFunc = () => boolean;
+export type IsAuthenticatedFunc = () => boolean;
