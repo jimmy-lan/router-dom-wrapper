@@ -1,3 +1,5 @@
+import { RedirectProps } from "react-router-dom";
+
 export type CheckAuthenticationFunc = () => boolean;
 
 export type CheckAccessRightFunc<Permissions = unknown> = (

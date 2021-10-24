@@ -1,15 +1,15 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { Route, RouteProps, Redirect, useHistory } from "react-router-dom";
 import { usePermissionsContext } from "../hooks";
+import { defaultValues } from "../config";
+import { PermissionsContextConfig } from "../types";
 
 interface ProtectedRouteProps extends RouteProps {
   /**
-   * Route url to redirect user if user is not authenticated.
-   * If this prop is specified, this prop will be used. If this
-   * prop is empty, config.unauthRedirectRoute attribute will be
-   * used.
+   * If specified, use this redirect config over the global redirect config
+   * live in context.
    */
-  redirectUrl?: string;
+  redirect?: PermissionsContextConfig["redirect"];
   /**
    * A custom-defined permission indicator representing acceptable user
    * permissions allowed to access this route.
@@ -53,18 +53,32 @@ type Props = ProtectedRouteProps;
 const ProtectedRoute: FunctionComponent<Props> = (
   props: PropsWithChildren<ProtectedRouteProps>
 ) => {
-  const { redirectUrl, permissions, children, ...otherProps } = props;
-  const { shouldRenderForbidden, checkAuthentication, checkAccessRight } =
-    usePermissionsContext();
+  const { redirect, permissions, children, ...otherProps } = props;
+  const {
+    shouldRenderForbidden,
+    checkAuthentication,
+    checkAccessRight,
+    redirect: contextRedirect,
+  } = usePermissionsContext();
   const { location } = useHistory();
 
-  const isAuthenticated = checkAuthentication();
-  let shouldAllowAccess = isAuthenticated;
-  if (shouldRenderForbidden) {
-    const isAccessAllowed = checkAccessRight(permissions);
-  }
+  let shouldAllowAccess = checkAuthentication();
+  let redirectToLocation =
+    redirect?.unauthorized ||
+    contextRedirect?.unauthorized ||
+    defaultValues.redirect.unauthorized;
 
-  const redirectPathname = redirectUrl;
+  // When forbidden routes are put into the DOM tree, the redirect decision
+  // must be made here.
+  if (shouldRenderForbidden) {
+    shouldAllowAccess = checkAccessRight(permissions);
+    if (!shouldAllowAccess) {
+      redirectToLocation =
+        redirect?.forbidden ||
+        contextRedirect?.forbidden ||
+        defaultValues.redirect.forbidden;
+    }
+  }
 
   return (
     <Route {...otherProps}>
@@ -73,7 +87,7 @@ const ProtectedRoute: FunctionComponent<Props> = (
       ) : (
         <Redirect
           to={{
-            pathname: redirectPathname,
+            pathname: redirectToLocation,
             state: { from: location },
           }}
         />
