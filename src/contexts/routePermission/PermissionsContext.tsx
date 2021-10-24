@@ -3,6 +3,6 @@ import { RoutePermissionProviderProps } from "../../types";
 
 interface PermissionContextValues extends RoutePermissionProviderProps {}
 
-export const PermissionContext = createContext<
+export const PermissionsContext = createContext<
   Partial<PermissionContextValues>
 >({});
