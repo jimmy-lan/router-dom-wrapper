@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren } from "react";
-import { RoutePermissionProviderProps } from "../../types";
+import { PermissionsContextConfig } from "../../types";
 
-interface PermissionContextValues extends RoutePermissionProviderProps {}
+interface PermissionContextValues extends PermissionsContextConfig {}
 
 export const PermissionsContext = createContext<
   Partial<PermissionContextValues>

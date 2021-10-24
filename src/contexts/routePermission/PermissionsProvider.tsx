@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react";
 import { PermissionsContext } from "./PermissionsContext";
-import { RoutePermissionProviderProps } from "../../types";
+import { PermissionsContextConfig } from "../../types";
 
-type Props = RoutePermissionProviderProps;
+type Props = PermissionsContextConfig;
 
 const PermissionsProvider: FunctionComponent<Props> = (props) => {
   const { children } = props;
