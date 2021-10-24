@@ -1,0 +1,24 @@
+# Publish to NPM: only publish if version number is different.
+name: CD - Build and Publish to NPM
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out Habits CLI code
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.17.6
+      - name: Upgrade npm
+        run: npm install -g npm
+      - run: npm install --quiet
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
