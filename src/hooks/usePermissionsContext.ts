@@ -4,7 +4,7 @@ import { InvalidContextError } from "../errors/InvalidContextError";
 
 export const usePermissionsContext = (): PermissionsContextValues => {
   const contextValues = useContext(PermissionsContext);
-  if (!contextValues) {
+  if (!contextValues || !Object.keys(contextValues).length) {
     throw new InvalidContextError(
       "Could not use permissions context. " +
         "Did you forget to include a PermissionsProvider?"
