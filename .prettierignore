@@ -6,3 +6,6 @@ coverage/*
 
 # data definition files
 **/*.d.ts
+
+package.json
+package-lock.json
