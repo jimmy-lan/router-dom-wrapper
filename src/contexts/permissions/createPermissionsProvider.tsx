@@ -1,14 +1,16 @@
-import React, { PropsWithChildren } from "react";
+import React, { FunctionComponent, PropsWithChildren } from "react";
 import {
   PermissionsProvider,
   PermissionsProviderProps,
 } from "./PermissionsProvider";
 
 export const createPermissionsProvider = (
-  props: PropsWithChildren<PermissionsProviderProps>
-) => {
-  const { children, ...providerProps } = props;
-  return (
-    <PermissionsProvider {...providerProps}>{children}</PermissionsProvider>
-  );
+  providerProps: PermissionsProviderProps
+): FunctionComponent => {
+  return (props) => {
+    const { children } = props;
+    return (
+      <PermissionsProvider {...providerProps}>{children}</PermissionsProvider>
+    );
+  };
 };
