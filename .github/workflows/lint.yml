@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.17.6
+      - name: Upgrade npm
+        run: npm install -g npm
+      - run: npm install --quiet
       - name: Run ESLint
         run: npm run lint
 
@@ -29,7 +32,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.17.6
-      - name: Prettify code
+      - name: Check code format
         uses: creyD/prettier_action@v4.0
         with:
           dry: true
