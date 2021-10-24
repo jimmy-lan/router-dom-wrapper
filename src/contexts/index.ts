@@ -1,1 +1,1 @@
-export * from "./routePermission";
+export * from "./permissions";
