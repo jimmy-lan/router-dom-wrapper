@@ -1,7 +1,7 @@
-export type IsAuthenticatedFunc = () => boolean;
+export type CheckAuthenticationFunc = () => boolean;
 
-export type IsAccessAllowedFunc<Permission = unknown> = (
-  permission: Permission
+export type CheckAccessRightFunc<Permissions = unknown> = (
+  permissions: Permissions
 ) => boolean;
 
 export interface PermissionsContextConfig {
@@ -15,11 +15,12 @@ export interface PermissionsContextConfig {
     forbidden: string;
   }>;
   /** A function to check whether the user is authenticated.
-   * Return a boolean value indicating whether the user is authenticated. */
-  isAuthenticated: IsAuthenticatedFunc;
+   * Return a boolean value to indicate whether the user is authenticated. */
+  checkAuthentication: CheckAuthenticationFunc;
   /** A function to check if the current logged in user has permission to
-   * access a resource that requires `permission`. */
-  isAccessAllowed: IsAccessAllowedFunc;
+   * access a resource that requires `permission. Return a boolean value to
+   * indicate whether the user is allowed to access this resource.*/
+  checkAccessRight: CheckAccessRightFunc;
   /** When set to `true`, routes that the users do not have permission to
    * access will still be rendered on the DOM tree. Defaults to `false`. */
   shouldRenderForbidden: boolean;

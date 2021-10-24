@@ -10,6 +10,14 @@ interface ProtectedRouteProps extends RouteProps {
    * used.
    */
   redirectUrl?: string;
+  /**
+   * A custom-defined permission indicator representing acceptable user
+   * permissions allowed to access this route.
+   *
+   * This value will be passed to `checkAccessRight` function when needed
+   * to determine if the user is allowed to access the current route.
+   */
+  permissions: unknown;
 }
 
 type Props = ProtectedRouteProps;
@@ -45,19 +53,27 @@ type Props = ProtectedRouteProps;
 const ProtectedRoute: FunctionComponent<Props> = (
   props: PropsWithChildren<ProtectedRouteProps>
 ) => {
-  const { children, redirectUrl, ...otherProps } = props;
-  const { isAuthenticated } = usePermissionsContext();
-
+  const { redirectUrl, permissions, children, ...otherProps } = props;
+  const { shouldRenderForbidden, checkAuthentication, checkAccessRight } =
+    usePermissionsContext();
   const { location } = useHistory();
+
+  const isAuthenticated = checkAuthentication();
+  let shouldAllowAccess = isAuthenticated;
+  if (shouldRenderForbidden) {
+    const isAccessAllowed = checkAccessRight(permissions);
+  }
+
+  const redirectPathname = redirectUrl;
 
   return (
     <Route {...otherProps}>
-      {isAuthenticated() ? (
+      {shouldAllowAccess ? (
         children
       ) : (
         <Redirect
           to={{
-            pathname: redirectUrl,
+            pathname: redirectPathname,
             state: { from: location },
           }}
         />
