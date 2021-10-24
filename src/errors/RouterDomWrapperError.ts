@@ -3,7 +3,7 @@ import { Serializable } from "../types";
 export class RouterDomWrapperError extends Error implements Serializable {
   public type: string | undefined;
 
-  constructor(message?: string, public cause?: string) {
+  constructor(message: string, public cause?: string) {
     super(message);
     Object.setPrototypeOf(this, RouterDomWrapperError.prototype);
   }
