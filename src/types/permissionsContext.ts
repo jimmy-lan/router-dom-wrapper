@@ -23,5 +23,5 @@ export interface PermissionsContextConfig {
   checkAccessRight: CheckAccessRightFunc;
   /** When set to `true`, routes that the users do not have permission to
    * access will still be rendered on the DOM tree. Defaults to `false`. */
-  shouldRenderForbidden: boolean;
+  shouldRenderForbidden?: boolean;
 }
