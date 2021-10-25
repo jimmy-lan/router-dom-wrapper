@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ComponentClass, FunctionComponent, ReactNode } from "react";
 import { PermissionsContextConfig } from "./permissionsContext";
 
 /** An entry in the route configuration object. */
@@ -7,6 +7,8 @@ export interface RouteEntry {
   path: string;
   /** Use exact route match. Defaults to false. */
   exact?: boolean;
+  sensitive?: boolean;
+  strict?: boolean;
   /**
    * A custom defined permissions indicator representing the access
    * control requirements for this route. This value will be passed into
@@ -22,7 +24,9 @@ export interface RouteEntry {
    */
   redirect?: PermissionsContextConfig["redirect"];
   /** The component to render in this route. */
-  Component: ReactElement;
+  Component:
+    | ComponentClass<{ routes?: RouteEntry[] }>
+    | FunctionComponent<{ routes?: RouteEntry[] }>;
   /**
    * Children routes for this route. Children routes should
    * only be specified when the rendering of children depends
