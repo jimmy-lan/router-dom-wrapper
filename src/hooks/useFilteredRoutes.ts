@@ -14,10 +14,12 @@ export const useFilteredRoutes = (routes: RouteEntry[]) => {
     return routes;
   }
   if (!checkAuthentication()) {
-    // When the user is not authenticated, we don't know what permissions this
-    // user possesses. When returning all the routes, individual route will
-    // see that user is unauthorized and will redirect the user to unauthorized
-    // route configured by the user of this library.
+    /*
+     * When the user is not authenticated, we don't know what permissions this
+     * user possesses. When returning all the routes, individual route will
+     * see that the user is unauthorized and will redirect the user to the
+     * unauthorized route configured in the permissions context.
+     */
     return routes;
   }
 
