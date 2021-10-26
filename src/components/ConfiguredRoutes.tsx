@@ -2,6 +2,8 @@ import React, { FunctionComponent } from "react";
 import { RouteEntry } from "../types";
 import { Switch, useRouteMatch } from "react-router-dom";
 import { useFilteredRoutes } from "../hooks";
+import { RouteWithSubRoutes } from "./RouteWithSubRoutes";
+import { joinPaths } from "../utils";
 
 interface Props {
   /** Configured route entries array to use. */
@@ -29,10 +31,19 @@ const SwitchWrapper: FunctionComponent<{ disableSwitch?: boolean }> = ({
 
 const ConfiguredRoutes: FunctionComponent<Props> = (props) => {
   const { routes, disableSwitch } = props;
-  const { path } = useRouteMatch();
+  const { path: parentPath } = useRouteMatch();
   const filteredRoutes = useFilteredRoutes(routes);
 
-  return <></>;
+  return (
+    <SwitchWrapper disableSwitch={disableSwitch}>
+      {filteredRoutes.map((route: RouteEntry) => {
+        if (!route.path.startsWith(parentPath)) {
+          route.path = joinPaths(parentPath, route.path);
+        }
+        return <RouteWithSubRoutes key={route.path} route={route} />;
+      })}
+    </SwitchWrapper>
+  );
 };
 
 export { ConfiguredRoutes };
