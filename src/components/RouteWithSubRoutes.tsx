@@ -10,8 +10,9 @@ interface Props {
 
 /**
  * A route factory to return `<PublicRoute />` or `<ProtectedRoute />` based
- * on a single route configuration entry `props.route`. This component will
- * handle the feature of passing children routes and permission inheritance.
+ * on a single route configuration entry `props.route`. Configuration will be
+ * processed and pass down to route components. This component will handle the
+ * feature of passing children routes and permission inheritance.
  * @param {RouteEntry} route
  * @constructor
  */
