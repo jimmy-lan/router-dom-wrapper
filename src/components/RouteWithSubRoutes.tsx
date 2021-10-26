@@ -8,6 +8,13 @@ interface Props {
   route: RouteEntry;
 }
 
+/**
+ * A route factory to return `<PublicRoute />` or `<ProtectedRoute />` based
+ * on a single route configuration entry `props.route`. This component will
+ * handle the feature of passing children routes and permission inheritance.
+ * @param {RouteEntry} route
+ * @constructor
+ */
 const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }) => {
   const { Component, permissions, redirect, children, ...otherRouteProps } =
     route;
