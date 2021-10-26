@@ -1,6 +1,6 @@
 {
   "name": "@ly-public/router-dom-wrapper",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "publishConfig": {
     "access": "public"
   },
