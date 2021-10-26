@@ -1,6 +1,11 @@
 import { RouteEntry } from "../types";
 import { usePermissionsContext } from "./usePermissionsContext";
 
+/**
+ * Filter `routes` configuration and keep only the routes that needs to
+ * be rendered.
+ * @param routes Routes to filter.
+ */
 export const useFilteredRoutes = (routes: RouteEntry[]) => {
   const { shouldRenderForbidden, checkAuthentication, checkAccessRight } =
     usePermissionsContext();
