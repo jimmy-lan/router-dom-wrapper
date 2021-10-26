@@ -14,7 +14,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "npm run clean && tsc -p . && cp LICENSE ./dist",
+    "build": "chmod +x scripts/build.sh && scripts/build.sh",
     "clean": "del ./dist/*",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
