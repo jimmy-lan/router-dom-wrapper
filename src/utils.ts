@@ -5,5 +5,5 @@ export const joinPaths = (path1: string, path2: string) => {
   const processedPath2 = path2.startsWith("/")
     ? path2.slice(1, path2.length)
     : path2;
-  return `${path1}/${path2}`;
+  return `${processedPath1}/${processedPath2}`;
 };
