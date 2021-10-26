@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { RouteEntry } from "../types";
-import { useRouteMatch } from "react-router-dom";
+import { Switch, useRouteMatch } from "react-router-dom";
 import { useFilteredRoutes } from "../hooks";
 
 interface Props {
@@ -16,6 +16,16 @@ interface Props {
    */
   disableSwitch?: boolean;
 }
+
+const SwitchWrapper: FunctionComponent<{ disableSwitch?: boolean }> = ({
+  disableSwitch,
+  children,
+}) => {
+  if (disableSwitch) {
+    return <>{children}</>;
+  }
+  return <Switch>{children}</Switch>;
+};
 
 const ConfiguredRoutes: FunctionComponent<Props> = (props) => {
   const { routes, disableSwitch } = props;
