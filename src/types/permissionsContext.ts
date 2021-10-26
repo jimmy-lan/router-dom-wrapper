@@ -7,22 +7,26 @@ export type CheckAccessRightFunc<Permissions = unknown> = (
 ) => boolean;
 
 export interface PermissionsContextConfig {
-  /**
-   * When users attempt to access a protected route without authenticating,
-   * this field will be used to handle the situation.
-   * @see RedirectOrComponent
-   */
-  unauthorizedHandle: RedirectOrComponent;
-  /**
-   * When users attempt to access a resource without property permission,
-   * this field will be used to handle the situation.
-   *
-   * **NOTE:** For routes rendered by the `<ConfiguredRoutes />` component,
-   * this setting will only be effective when `shouldRenderForbidden`
-   * is set to `true`.
-   * @see RedirectOrComponent
-   */
-  forbiddenHandle: RedirectOrComponent;
+  /** Handles describe how to deal with particular situations within the
+   * scope of permissions. */
+  handles: {
+    /**
+     * When users attempt to access a protected route without authenticating,
+     * this field will be used to handle the situation.
+     * @see RedirectOrComponent
+     */
+    unauthorizedHandle: RedirectOrComponent;
+    /**
+     * When users attempt to access a resource without property permission,
+     * this field will be used to handle the situation.
+     *
+     * **NOTE:** For routes rendered by the `<ConfiguredRoutes />` component,
+     * this setting will only be effective when `shouldRenderForbidden`
+     * is set to `true`.
+     * @see RedirectOrComponent
+     */
+    forbiddenHandle: RedirectOrComponent;
+  };
   /** A function to check whether the user is authenticated.
    * Return a boolean value to indicate whether the user is authenticated. */
   checkAuthentication: CheckAuthenticationFunc;
