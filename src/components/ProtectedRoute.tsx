@@ -18,6 +18,13 @@ interface ProtectedRouteProps extends RouteProps {
    * to determine if the user is allowed to access the current route.
    */
   permissions: unknown;
+  /**
+   * Indicate that this route is added by `<ConfiguredRoutes />` component
+   * or equivalent. You normally do not need to set this prop. If you find
+   * yourself in a situation that you want to set this prop, please raise
+   * this situation to the issues page of this library.
+   */
+  isConfiguredRoute?: boolean;
 }
 
 type Props = ProtectedRouteProps;
@@ -53,7 +60,8 @@ type Props = ProtectedRouteProps;
 const ProtectedRoute: FunctionComponent<Props> = (
   props: PropsWithChildren<ProtectedRouteProps>
 ) => {
-  const { redirect, permissions, children, ...otherProps } = props;
+  const { redirect, permissions, isConfiguredRoute, children, ...otherProps } =
+    props;
   const {
     shouldRenderForbidden,
     checkAuthentication,
@@ -69,8 +77,11 @@ const ProtectedRoute: FunctionComponent<Props> = (
     defaultValues.redirect.unauthorized;
 
   // When forbidden routes are put into the DOM tree, the redirect decision
-  // must be made here.
-  if (shouldRenderForbidden) {
+  // must be made in individual `<ProtectedRoute />` components. Also, if this
+  // route is not added by `<ConfiguredRoutes />` or equivalent, the logic
+  // of skipping forbidden routes are not present, and hence permission checks
+  // are needed.
+  if (shouldRenderForbidden || !isConfiguredRoute) {
     shouldAllowAccess = checkAccessRight(permissions);
     if (!shouldAllowAccess) {
       redirectToLocation =
