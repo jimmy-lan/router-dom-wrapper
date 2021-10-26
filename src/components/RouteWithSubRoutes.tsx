@@ -21,14 +21,11 @@ interface Props {
 const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }) => {
   const { Component, permissions, redirect, children, ...otherRouteProps } =
     route;
-  const { path: parentPath } = useRouteMatch();
 
   const childrenToRender = children?.map((route) => {
     if (!route.permissions) {
       // Allow permission inheritance.
       route.permissions = permissions;
-      // Allow children route to use relative path.
-      route.path = `${parentPath}${route.path}`;
     }
     return route;
   });
