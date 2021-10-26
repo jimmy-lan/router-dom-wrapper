@@ -1,4 +1,4 @@
-import { RedirectProps } from "react-router-dom";
+import { RedirectOrComponent } from "./RedirectOrComponent";
 
 export type CheckAuthenticationFunc = () => boolean;
 
@@ -7,6 +7,8 @@ export type CheckAccessRightFunc<Permissions = unknown> = (
 ) => boolean;
 
 export interface PermissionsContextConfig {
+  unauthorizedHandle: RedirectOrComponent;
+  forbiddenHandle: RedirectOrComponent;
   redirect?: Partial<{
     /** Path to redirect the users when they attempt to access a protected
      * route without authenticating. */
