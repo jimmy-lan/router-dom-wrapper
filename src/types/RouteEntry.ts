@@ -1,4 +1,4 @@
-import { ComponentClass, FunctionComponent, ReactNode } from "react";
+import { ComponentClass, FunctionComponent } from "react";
 import { PermissionsContextConfig } from "./permissionsContext";
 
 /** An entry in the route configuration object. */

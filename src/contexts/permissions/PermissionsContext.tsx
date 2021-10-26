@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren } from "react";
+import React, { createContext } from "react";
 import { PermissionsContextConfig } from "../../types";
 
 export interface PermissionsContextValues extends PermissionsContextConfig {}
