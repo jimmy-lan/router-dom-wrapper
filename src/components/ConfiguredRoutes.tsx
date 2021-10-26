@@ -1,9 +1,11 @@
 import React, { FunctionComponent } from "react";
 import { RouteEntry } from "../types";
+import { useRouteMatch } from "react-router-dom";
+import { useFilteredRoutes } from "../hooks";
 
 interface Props {
   /** Configured route entries array to use. */
-  entries: RouteEntry[];
+  routes: RouteEntry[];
   /**
    * When set to true, routes will be rendered _inclusively_.
    * That is, all routes configured in `props.entries` matching the current
@@ -16,6 +18,10 @@ interface Props {
 }
 
 const ConfiguredRoutes: FunctionComponent<Props> = (props) => {
+  const { routes, disableSwitch } = props;
+  const { path } = useRouteMatch();
+  const filteredRoutes = useFilteredRoutes(routes);
+
   return <></>;
 };
 
