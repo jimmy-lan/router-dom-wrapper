@@ -1,5 +1,5 @@
 export const defaultValues = {
-  redirect: {
+  handles: {
     unauthorized: "/",
     forbidden: "/",
   },
