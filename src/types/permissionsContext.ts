@@ -9,7 +9,7 @@ export type CheckAccessRightFunc<Permissions = unknown> = (
 export interface PermissionsContextConfig {
   /** Handles describe how to deal with particular situations within the
    * scope of permissions. */
-  handles: {
+  handles: Partial<{
     /**
      * When users attempt to access a protected route without authenticating,
      * this field will be used to handle the situation.
@@ -26,7 +26,7 @@ export interface PermissionsContextConfig {
      * @see RedirectOrComponent
      */
     forbiddenHandle: RedirectOrComponent;
-  };
+  }>;
   /** A function to check whether the user is authenticated.
    * Return a boolean value to indicate whether the user is authenticated. */
   checkAuthentication: CheckAuthenticationFunc;
