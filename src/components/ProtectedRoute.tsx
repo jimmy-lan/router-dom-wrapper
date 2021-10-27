@@ -3,7 +3,7 @@ import { Route, RouteProps } from "react-router-dom";
 import { usePermissionsContext } from "../hooks";
 import { defaultValues } from "../config";
 import { PermissionsContextConfig } from "../types";
-import { handleRedirectOrComponent } from "../utils";
+import { handleRedirectOrComponentField } from "../utils";
 
 interface ProtectedRouteProps extends RouteProps {
   /**
@@ -54,7 +54,7 @@ const useProtectedComponent = (props: PropsWithChildren<Props>) => {
     defaultValues.handles.forbidden;
 
   if (!checkAuthentication()) {
-    return handleRedirectOrComponent(unauthorizedHandle);
+    return handleRedirectOrComponentField(unauthorizedHandle);
   }
   if (shouldRenderForbidden || !isConfiguredRoute) {
     // We will enter this block if one of the following occurs:
@@ -65,7 +65,7 @@ const useProtectedComponent = (props: PropsWithChildren<Props>) => {
     //   `<ConfiguredRoutes />` component is missing, and hence the permission
     //   checking logic should be included.
     if (!checkAccessRight(permissions)) {
-      return handleRedirectOrComponent(forbiddenHandle);
+      return handleRedirectOrComponentField(forbiddenHandle);
     }
   }
 

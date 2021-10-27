@@ -8,7 +8,7 @@ const RedirectWrapper: FunctionComponent<{ pathname: string }> = (props) => {
   return <Redirect to={{ pathname, state: { from: location } }} />;
 };
 
-export const handleRedirectOrComponent = (
+export const handleRedirectOrComponentField = (
   field: RedirectOrComponent,
   additionalProps?: Record<string, any>
 ) => {

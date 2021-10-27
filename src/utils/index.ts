@@ -1,2 +1,2 @@
 export * from "./joinPaths";
-export * from "./handleRedirectOrComponent";
+export * from "./handleRedirectOrComponentField";
