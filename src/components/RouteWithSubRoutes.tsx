@@ -19,7 +19,7 @@ interface Props {
  * @constructor
  */
 const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }) => {
-  const { Component, permissions, redirect, children, ...otherRouteProps } =
+  const { Component, permissions, handles, children, ...otherRouteProps } =
     route;
 
   const childrenToRender = children?.map((route) => {
@@ -34,7 +34,7 @@ const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }) => {
     return (
       <ProtectedRoute
         permissions={permissions}
-        redirect={redirect}
+        handles={handles}
         {...otherRouteProps}
       >
         <Component routes={childrenToRender} />
