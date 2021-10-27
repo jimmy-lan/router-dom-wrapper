@@ -1,4 +1,4 @@
-import { ComponentClass, FunctionComponent, ReactNode } from "react";
+import { ComponentClass, FunctionComponent, ReactElement } from "react";
 
 /**
  * A type for fields that accept:
@@ -8,6 +8,6 @@ import { ComponentClass, FunctionComponent, ReactNode } from "react";
  */
 export type RedirectOrComponent =
   | string
-  | ReactNode
+  | ReactElement
   | ComponentClass
   | FunctionComponent;
