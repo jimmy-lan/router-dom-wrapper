@@ -8,6 +8,14 @@ const RedirectWrapper: FunctionComponent<{ pathname: string }> = (props) => {
   return <Redirect to={{ pathname, state: { from: location } }} />;
 };
 
+/**
+ * Given a redirect-or-component handle, return the appropriate component
+ * to render based on the input.
+ * @param {RedirectOrComponent} field The redirect-or-component handle to parse.
+ * @param {Record<string, any>} additionalProps If `field` is a component, pass
+ *   return the constructed component with these additional props.
+ * @see RedirectOrComponent
+ */
 export const handleRedirectOrComponentField = (
   field: RedirectOrComponent,
   additionalProps?: Record<string, any>
