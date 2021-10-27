@@ -15,7 +15,7 @@ export interface PermissionsContextConfig {
      * this field will be used to handle the situation.
      * @see RedirectOrComponent
      */
-    unauthorizedHandle: RedirectOrComponent;
+    unauthorized: RedirectOrComponent;
     /**
      * When users attempt to access a resource without property permission,
      * this field will be used to handle the situation.
@@ -25,7 +25,7 @@ export interface PermissionsContextConfig {
      * is set to `true`.
      * @see RedirectOrComponent
      */
-    forbiddenHandle: RedirectOrComponent;
+    forbidden: RedirectOrComponent;
   }>;
   /** A function to check whether the user is authenticated.
    * Return a boolean value to indicate whether the user is authenticated. */
