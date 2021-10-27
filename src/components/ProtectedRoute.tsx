@@ -1,15 +1,16 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
-import { Route, RouteProps, Redirect, useHistory } from "react-router-dom";
+import { Route, RouteProps } from "react-router-dom";
 import { usePermissionsContext } from "../hooks";
 import { defaultValues } from "../config";
 import { PermissionsContextConfig } from "../types";
+import { handleRedirectOrComponent } from "../utils";
 
 interface ProtectedRouteProps extends RouteProps {
   /**
-   * If specified, use this redirect config over the global redirect config
-   * live in context.
+   * When specified, use the specified handles over the globally
+   * configured permission handles.
    */
-  redirect?: PermissionsContextConfig["redirect"];
+  handles?: PermissionsContextConfig["handles"];
   /**
    * A custom-defined permission indicator representing acceptable user
    * permissions allowed to access this route.
@@ -28,6 +29,48 @@ interface ProtectedRouteProps extends RouteProps {
 }
 
 type Props = ProtectedRouteProps;
+
+/**
+ * Given props to a protected route, return the appropriate component to
+ * render inside of `<Route />`.
+ * @param props Props for a `<ProtectedRoute />` component.
+ */
+const useProtectedComponent = (props: PropsWithChildren<Props>) => {
+  const { permissions, handles, isConfiguredRoute, children } = props;
+  const {
+    shouldRenderForbidden,
+    checkAuthentication,
+    checkAccessRight,
+    handles: contextHandles,
+  } = usePermissionsContext();
+
+  const unauthorizedHandle =
+    handles?.unauthorized ||
+    contextHandles?.unauthorized ||
+    defaultValues.handles.unauthorized;
+  const forbiddenHandle =
+    handles?.forbidden ||
+    contextHandles?.forbidden ||
+    defaultValues.handles.forbidden;
+
+  if (!checkAuthentication()) {
+    return handleRedirectOrComponent(unauthorizedHandle);
+  }
+  if (shouldRenderForbidden || !isConfiguredRoute) {
+    // We will enter this block if one of the following occurs:
+    // - (1) This route is rendered by a `<ConfiguredRoutes />` component.
+    //   In this case, we need to check for permission because the
+    //   ConfiguredRoutes component won't do this with `shouldRenderForbidden`;
+    // - (2) This route is constructed by the user. In this case, the
+    //   `<ConfiguredRoutes />` component is missing, and hence the permission
+    //   checking logic should be included.
+    if (!checkAccessRight(permissions)) {
+      return handleRedirectOrComponent(forbiddenHandle);
+    }
+  }
+
+  return children;
+};
 
 /**
  * A route where the user must be authenticated to access. If the user is
@@ -60,51 +103,11 @@ type Props = ProtectedRouteProps;
 const ProtectedRoute: FunctionComponent<Props> = (
   props: PropsWithChildren<ProtectedRouteProps>
 ) => {
-  const { redirect, permissions, isConfiguredRoute, children, ...otherProps } =
+  const { permissions, handles, isConfiguredRoute, children, ...otherProps } =
     props;
-  const {
-    shouldRenderForbidden,
-    checkAuthentication,
-    checkAccessRight,
-    redirect: contextRedirect,
-  } = usePermissionsContext();
-  const { location } = useHistory();
+  const componentToRender = useProtectedComponent(props);
 
-  let shouldAllowAccess = checkAuthentication();
-  let redirectToLocation =
-    redirect?.unauthorized ||
-    contextRedirect?.unauthorized ||
-    defaultValues.redirect.unauthorized;
-
-  // When forbidden routes are put into the DOM tree, the redirect decision
-  // must be made in individual `<ProtectedRoute />` components. Also, if this
-  // route is not added by `<ConfiguredRoutes />` or equivalent, the logic
-  // of skipping forbidden routes are not present, and hence permission checks
-  // are needed.
-  if (shouldRenderForbidden || !isConfiguredRoute) {
-    shouldAllowAccess = checkAccessRight(permissions);
-    if (!shouldAllowAccess) {
-      redirectToLocation =
-        redirect?.forbidden ||
-        contextRedirect?.forbidden ||
-        defaultValues.redirect.forbidden;
-    }
-  }
-
-  return (
-    <Route {...otherProps}>
-      {shouldAllowAccess ? (
-        children
-      ) : (
-        <Redirect
-          to={{
-            pathname: redirectToLocation,
-            state: { from: location },
-          }}
-        />
-      )}
-    </Route>
-  );
+  return <Route {...otherProps}>{componentToRender}</Route>;
 };
 
 export { ProtectedRoute };
