@@ -10,7 +10,7 @@ const RedirectWrapper: FunctionComponent<{ pathname: string }> = (props) => {
 
 export const handleRedirectOrComponent = (
   field: RedirectOrComponent,
-  additionalProps: Record<string, any>
+  additionalProps?: Record<string, any>
 ) => {
   if (typeof field === "string") {
     return <RedirectWrapper pathname={field} />;
