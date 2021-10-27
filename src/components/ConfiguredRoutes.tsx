@@ -40,7 +40,13 @@ const ConfiguredRoutes: FunctionComponent<Props> = (props) => {
         if (!route.path.startsWith(parentPath)) {
           route.path = joinPaths(parentPath, route.path);
         }
-        return <RouteWithSubRoutes key={route.path} route={route} />;
+        return (
+          <RouteWithSubRoutes
+            key={route.path}
+            route={route}
+            isConfiguredRoute
+          />
+        );
       })}
     </SwitchWrapper>
   );

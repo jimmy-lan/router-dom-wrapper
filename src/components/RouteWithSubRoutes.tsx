@@ -6,6 +6,8 @@ import { PublicRoute } from "./PublicRoute";
 
 interface Props {
   route: RouteEntry;
+  /** @see ProtectedRoute */
+  isConfiguredRoute?: boolean;
 }
 
 /**
@@ -15,10 +17,11 @@ interface Props {
  *
  * This component will handle the feature of passing children routes and
  * permission inheritance.
- * @param {RouteEntry} route
+ * @param props
  * @constructor
  */
-const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }) => {
+const RouteWithSubRoutes: FunctionComponent<Props> = (props) => {
+  const { route, isConfiguredRoute } = props;
   const { Component, permissions, handles, children, ...otherRouteProps } =
     route;
 
@@ -35,6 +38,7 @@ const RouteWithSubRoutes: FunctionComponent<Props> = ({ route }) => {
       <ProtectedRoute
         permissions={permissions}
         handles={handles}
+        isConfiguredRoute={isConfiguredRoute}
         {...otherRouteProps}
       >
         <Component routes={childrenToRender} />
