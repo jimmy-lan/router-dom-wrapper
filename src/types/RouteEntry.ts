@@ -18,11 +18,11 @@ export interface RouteEntry {
    */
   permissions?: unknown;
   /**
-   * Specify how to redirect user in case of need.
-   * Defaults to undefined, where the redirect url in permissions context will
-   * be used. Ignored if permissions is a falsy value.
+   * Specify how to handle permission-related situations. If not defined,
+   * the `handles` in permission context will be used. Ignored if
+   * `permissions` is a falsy value.
    */
-  redirect?: PermissionsContextConfig["redirect"];
+  handles?: PermissionsContextConfig["handles"];
   /** The component to render in this route. */
   Component:
     | ComponentClass<{ routes?: RouteEntry[] }>
