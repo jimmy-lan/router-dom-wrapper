@@ -19,13 +19,6 @@ interface ProtectedRouteProps extends RouteProps {
    * to determine if the user is allowed to access the current route.
    */
   permissions: unknown;
-  /**
-   * Indicate that this route is added by `<ConfiguredRoutes />` component
-   * or equivalent. You normally do not need to set this prop. If you find
-   * yourself in a situation that you want to set this prop, please raise
-   * this situation to the issues page of this library.
-   */
-  isConfiguredRoute?: boolean;
 }
 
 type Props = ProtectedRouteProps;
@@ -36,7 +29,7 @@ type Props = ProtectedRouteProps;
  * @param props Props for a `<ProtectedRoute />` component.
  */
 const useProtectedComponent = (props: PropsWithChildren<Props>) => {
-  const { permissions, handles, isConfiguredRoute, children } = props;
+  const { permissions, handles, children } = props;
   const {
     checkAuthentication,
     checkAccessRight,
@@ -93,8 +86,7 @@ const useProtectedComponent = (props: PropsWithChildren<Props>) => {
 const ProtectedRoute: FunctionComponent<Props> = (
   props: PropsWithChildren<ProtectedRouteProps>
 ) => {
-  const { permissions, handles, isConfiguredRoute, children, ...otherProps } =
-    props;
+  const { permissions, handles, children, ...otherProps } = props;
   const componentToRender = useProtectedComponent(props);
 
   return <Route {...otherProps}>{componentToRender}</Route>;
