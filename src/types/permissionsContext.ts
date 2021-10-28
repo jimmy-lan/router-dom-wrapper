@@ -34,7 +34,4 @@ export interface PermissionsContextConfig {
    * access a resource that requires `permission. Return a boolean value to
    * indicate whether the user is allowed to access this resource.*/
   checkAccessRight: CheckAccessRightFunc;
-  /** When set to `true`, routes that the users do not have permission to
-   * access will still be rendered on the DOM tree. Defaults to `false`. */
-  shouldRenderForbidden?: boolean;
 }

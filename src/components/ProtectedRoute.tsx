@@ -38,7 +38,6 @@ type Props = ProtectedRouteProps;
 const useProtectedComponent = (props: PropsWithChildren<Props>) => {
   const { permissions, handles, isConfiguredRoute, children } = props;
   const {
-    shouldRenderForbidden,
     checkAuthentication,
     checkAccessRight,
     handles: contextHandles,
@@ -56,17 +55,8 @@ const useProtectedComponent = (props: PropsWithChildren<Props>) => {
   if (!checkAuthentication()) {
     return handleRedirectOrComponentField(unauthorizedHandle);
   }
-  if (shouldRenderForbidden || !isConfiguredRoute) {
-    // We will enter this block if one of the following occurs:
-    // - (1) This route is rendered by a `<ConfiguredRoutes />` component.
-    //   In this case, we need to check for permission because the
-    //   ConfiguredRoutes component won't do this with `shouldRenderForbidden`;
-    // - (2) This route is constructed by the user. In this case, the
-    //   `<ConfiguredRoutes />` component is missing, and hence the permission
-    //   checking logic should be included.
-    if (!checkAccessRight(permissions)) {
-      return handleRedirectOrComponentField(forbiddenHandle);
-    }
+  if (!checkAccessRight(permissions)) {
+    return handleRedirectOrComponentField(forbiddenHandle);
   }
 
   return children;
