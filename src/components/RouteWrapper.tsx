@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
 import { Route, useRouteMatch } from "react-router-dom";
 import { joinPaths } from "../utils";
-import { RouterWrapperProps } from "../types";
+import { RouteWrapperProps } from "../types";
 
-const RouteWrapper: FunctionComponent<RouterWrapperProps> = (props) => {
+const RouteWrapper: FunctionComponent<RouteWrapperProps> = (props) => {
   const { path } = props;
 
   // This allows relative path syntax

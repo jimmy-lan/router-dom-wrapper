@@ -1,11 +1,11 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { usePermissionsContext } from "../hooks";
 import { defaultValues } from "../config";
-import { PermissionsContextConfig, RouterWrapperProps } from "../types";
+import { PermissionsContextConfig, RouteWrapperProps } from "../types";
 import { handleRedirectOrComponentField } from "../utils";
 import { RouteWrapper } from "./RouteWrapper";
 
-interface ProtectedRouteProps extends RouterWrapperProps {
+interface ProtectedRouteProps extends RouteWrapperProps {
   /**
    * When specified, use the specified handles over the globally
    * configured permission handles.

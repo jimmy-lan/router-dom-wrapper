@@ -1,5 +1,5 @@
 import { RouterProps } from "react-router-dom";
 
-export interface RouterWrapperProps extends RouterProps {
+export interface RouteWrapperProps extends RouterProps {
   path: string;
 }
