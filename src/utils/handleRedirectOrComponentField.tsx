@@ -1,10 +1,19 @@
 import React, { cloneElement, FunctionComponent } from "react";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect, useLocation, useRouteMatch } from "react-router-dom";
 import { RedirectOrComponent } from "../types";
+import { RedirectError } from "../errors";
 
 const RedirectWrapper: FunctionComponent<{ pathname: string }> = (props) => {
   const { pathname } = props;
   const location = useLocation();
+  const match = useRouteMatch(pathname);
+  if (match && match.isExact) {
+    throw new RedirectError(
+      `Cannot redirect user to path "${pathname}" because the user does` +
+        " not have sufficient permission. Please ensure that redirect paths are" +
+        " accessible to all users."
+    );
+  }
   return <Redirect to={{ pathname, state: { from: location } }} />;
 };
 
