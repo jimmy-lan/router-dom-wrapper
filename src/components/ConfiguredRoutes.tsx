@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { RouteEntry } from "../types";
 import { Switch, useRouteMatch } from "react-router-dom";
-import { useFilteredRoutes } from "../hooks";
+import { RouteEntry } from "../types";
 import { RouteWithSubRoutes } from "./RouteWithSubRoutes";
 import { joinPaths } from "../utils";
 
@@ -19,35 +18,22 @@ interface Props {
   disableSwitch?: boolean;
 }
 
-const SwitchWrapper: FunctionComponent<{ disableSwitch?: boolean }> = ({
-  disableSwitch,
-  children,
-}) => {
-  if (disableSwitch) {
-    return <>{children}</>;
-  }
-  return <Switch>{children}</Switch>;
-};
+const SwitchWrapper: FunctionComponent<{ disableSwitch: boolean | undefined }> =
+  ({ disableSwitch, children }) => {
+    if (disableSwitch) {
+      return <>{children}</>;
+    }
+    return <Switch>{children}</Switch>;
+  };
 
 const ConfiguredRoutes: FunctionComponent<Props> = (props) => {
   const { routes, disableSwitch } = props;
-  const { path: parentPath } = useRouteMatch();
-  const filteredRoutes = useFilteredRoutes(routes);
 
   return (
     <SwitchWrapper disableSwitch={disableSwitch}>
-      {filteredRoutes.map((route: RouteEntry) => {
-        if (!route.path.startsWith(parentPath)) {
-          route.path = joinPaths(parentPath, route.path);
-        }
-        return (
-          <RouteWithSubRoutes
-            key={route.path}
-            route={route}
-            isConfiguredRoute
-          />
-        );
-      })}
+      {routes.map((route: RouteEntry) => (
+        <RouteWithSubRoutes key={route.path + route.exact} route={route} />
+      ))}
     </SwitchWrapper>
   );
 };
