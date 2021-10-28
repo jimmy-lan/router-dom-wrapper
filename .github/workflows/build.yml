@@ -1,5 +1,5 @@
 # Perform test build to make sure code is free of compile errors
-name: CI - Test Build
+name: CI - Build
 
 on:
   pull_request:
