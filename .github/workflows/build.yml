@@ -1,0 +1,26 @@
+# Perform test build to make sure code is free of compile errors
+name: CI - Test Build
+
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  test_build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.17.6
+      - run: npm install --quiet
+      - name: Test build
+        run: npm run build
