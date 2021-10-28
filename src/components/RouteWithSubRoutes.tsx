@@ -6,8 +6,6 @@ import { PublicRoute } from "./PublicRoute";
 
 interface Props {
   route: RouteEntry;
-  /** @see ProtectedRoute */
-  isConfiguredRoute?: boolean;
 }
 
 /**
@@ -21,7 +19,7 @@ interface Props {
  * @constructor
  */
 const RouteWithSubRoutes: FunctionComponent<Props> = (props) => {
-  const { route, isConfiguredRoute } = props;
+  const { route } = props;
   const { Component, permissions, handles, children, ...otherRouteProps } =
     route;
 
@@ -38,7 +36,6 @@ const RouteWithSubRoutes: FunctionComponent<Props> = (props) => {
       <ProtectedRoute
         permissions={permissions}
         handles={handles}
-        isConfiguredRoute={isConfiguredRoute}
         {...otherRouteProps}
       >
         <Component routes={childrenToRender} />
