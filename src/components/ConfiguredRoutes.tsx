@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from "react";
-import { Switch, useRouteMatch } from "react-router-dom";
+import { Switch } from "react-router";
 import { RouteEntry } from "../types";
-import { RouteWithSubRoutes } from "./RouteWithSubRoutes";
-import { joinPaths } from "../utils";
+import { renderConfiguredRoute } from "../functions";
 
 interface Props {
   /** Configured route entries array to use. */
@@ -31,9 +30,9 @@ const ConfiguredRoutes: FunctionComponent<Props> = (props) => {
 
   return (
     <SwitchWrapper disableSwitch={disableSwitch}>
-      {routes.map((route: RouteEntry) => (
-        <RouteWithSubRoutes key={route.path + route.exact} route={route} />
-      ))}
+      {routes.map((route: RouteEntry) =>
+        renderConfiguredRoute(route, { key: route.path })
+      )}
     </SwitchWrapper>
   );
 };
