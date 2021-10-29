@@ -33,4 +33,11 @@ export interface RouteEntry {
    * on the rendering of parent.
    */
   children?: RouteEntry[];
+  /**
+   * The key to use when rendering this route in a list.
+   * If not provided, `route.path` and a string version
+   * of `route.permissions` will be used. If your `permissions`
+   * value is complex or not serializable, specify this key.
+   */
+  key?: string;
 }
