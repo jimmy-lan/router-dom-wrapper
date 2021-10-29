@@ -1,1 +1,1 @@
-export * from "./renderConfiguredRoute";
+export * from "./renderSingleRoute";

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { RouteEntry } from "../types";
 import { ProtectedRoute, PublicRoute } from "../components";
 
-export const renderConfiguredRoute = (
+export const renderSingleRoute = (
   route: RouteEntry,
   extraProps?: Record<string, any>
 ): ReactNode => {
