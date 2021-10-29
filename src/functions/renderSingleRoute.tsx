@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { RouteEntry } from "../types";
 import { ProtectedRoute, PublicRoute } from "../components";
+import { handleComponentField } from "../utils/handleComponentField";
 
 /**
  * Render one route based on configuration `route`.
@@ -12,7 +13,7 @@ export const renderSingleRoute = (
   route: RouteEntry,
   extraProps?: Record<string, any>
 ): ReactNode => {
-  const { Component, permissions, handles, children, ...otherRouteProps } =
+  const { component, permissions, handles, children, ...otherRouteProps } =
     route;
 
   const childrenToRender = children?.map((route) => {
@@ -31,13 +32,13 @@ export const renderSingleRoute = (
         {...otherRouteProps}
         {...extraProps}
       >
-        <Component routes={childrenToRender} />
+        {handleComponentField(component, { routes: childrenToRender })}
       </ProtectedRoute>
     );
   } else {
     return (
       <PublicRoute {...otherRouteProps} {...extraProps}>
-        <Component routes={childrenToRender} />
+        {handleComponentField(component, { routes: childrenToRender })}
       </PublicRoute>
     );
   }
