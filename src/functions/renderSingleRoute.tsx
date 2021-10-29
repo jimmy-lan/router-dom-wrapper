@@ -2,6 +2,12 @@ import React, { ReactNode } from "react";
 import { RouteEntry } from "../types";
 import { ProtectedRoute, PublicRoute } from "../components";
 
+/**
+ * Render one route based on configuration `route`.
+ * Return the component corresponding to the configuration parameter.
+ * @param route Route to render.
+ * @param extraProps Extra props to pass into route component.
+ */
 export const renderSingleRoute = (
   route: RouteEntry,
   extraProps?: Record<string, any>
