@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { PermissionsContextValues, PermissionsContext } from "../contexts";
-import { InvalidContextError } from "../errors/InvalidContextError";
+import { InvalidContextError } from "../errors";
 
 export const usePermissionsContext = (): PermissionsContextValues => {
   const contextValues = useContext(PermissionsContext);
