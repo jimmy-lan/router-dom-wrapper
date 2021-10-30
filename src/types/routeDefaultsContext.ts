@@ -1,6 +1,6 @@
-import { RouteWrapperProps } from "./RouteWrapperProps";
 import { RouteEntry } from "./RouteEntry";
 
-export interface RouteDefaultsContextConfig extends Partial<RouteWrapperProps> {
-  permissions?: RouteEntry["permissions"];
-}
+export type RouteDefaultsContextConfig = Pick<
+  RouteEntry,
+  "path" | "exact" | "permissions" | "strict"
+>;
