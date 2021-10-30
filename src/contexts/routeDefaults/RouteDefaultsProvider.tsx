@@ -5,16 +5,19 @@ import { RouteDefaultsContext } from "./RouteDefaultsContext";
 export interface RouteDefaultsProviderProps
   extends RouteDefaultsContextConfig {}
 
-export const RouteDefaultsProvider: FunctionComponent<RouteDefaultsProviderProps> =
-  (props) => {
-    const { children, ...otherValues } = props;
-    const [routeDefaults, setRouteDefaults] = useState(otherValues);
+const RouteDefaultsProvider: FunctionComponent<RouteDefaultsProviderProps> = (
+  props
+) => {
+  const { children, ...otherValues } = props;
+  const [routeDefaults, setRouteDefaults] = useState(otherValues);
 
-    return (
-      <RouteDefaultsContext.Provider
-        value={{ setRouteDefaults, ...routeDefaults }}
-      >
-        {children}
-      </RouteDefaultsContext.Provider>
-    );
-  };
+  return (
+    <RouteDefaultsContext.Provider
+      value={{ setRouteDefaults, ...routeDefaults }}
+    >
+      {children}
+    </RouteDefaultsContext.Provider>
+  );
+};
+
+export { RouteDefaultsProvider };
