@@ -1,6 +1,10 @@
-import { createContext } from "react";
-import { RouteDefaultsProviderProps } from "./RouteDefaultsProvider";
+import { createContext, Dispatch, SetStateAction } from "react";
+import { RouteDefaultsContextConfig } from "../../types";
 
-export const RouteDefaultsContext = createContext<RouteDefaultsProviderProps>(
-  {}
-);
+export interface RouteDefaultsContextValues extends RouteDefaultsContextConfig {
+  setRouteDefaults: Dispatch<SetStateAction<RouteDefaultsContextConfig>>;
+}
+
+export const RouteDefaultsContext = createContext<RouteDefaultsContextValues>({
+  setRouteDefaults: () => {},
+});
