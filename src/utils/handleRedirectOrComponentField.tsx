@@ -1,4 +1,4 @@
-import React, { cloneElement, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { Redirect, useLocation, useRouteMatch } from "react-router-dom";
 import { RedirectOrComponent } from "../types";
 import { RedirectError } from "../errors";
