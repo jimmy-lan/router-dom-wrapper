@@ -1,4 +1,4 @@
-import { ComponentClass, FunctionComponent } from "react";
+import { Component } from "./RedirectOrComponent";
 import { PermissionsContextConfig } from "./permissionsContext";
 
 /** An entry in the route configuration object. */
@@ -24,9 +24,7 @@ export interface RouteEntry {
    */
   handles?: PermissionsContextConfig["handles"];
   /** The component to render in this route. */
-  Component:
-    | ComponentClass<{ routes?: RouteEntry[] }>
-    | FunctionComponent<{ routes?: RouteEntry[] }>;
+  component: Component;
   /**
    * Children routes for this route. Children routes should
    * only be specified when the rendering of children depends
