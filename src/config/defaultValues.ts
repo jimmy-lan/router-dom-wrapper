@@ -1,6 +1,6 @@
 export const defaultValues = {
   handles: {
-    unauthorized: "/",
-    forbidden: "/",
+    unauthorized: "/unauthorized",
+    forbidden: "/forbidden",
   },
 };
