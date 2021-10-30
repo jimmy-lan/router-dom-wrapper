@@ -6,5 +6,6 @@ export interface RouteDefaultsContextValues extends RouteDefaultsContextConfig {
 }
 
 export const RouteDefaultsContext = createContext<RouteDefaultsContextValues>({
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setRouteDefaults: () => {},
 });
