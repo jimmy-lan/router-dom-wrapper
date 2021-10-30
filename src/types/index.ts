@@ -3,3 +3,4 @@ export * from "./Serializable";
 export * from "./RouteEntry";
 export * from "./RedirectOrComponent";
 export * from "./RouteWrapperProps";
+export * from "./routeDefaultsContext";
