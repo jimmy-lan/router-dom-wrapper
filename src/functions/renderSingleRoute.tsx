@@ -16,14 +16,6 @@ export const renderSingleRoute = (
   const { component, permissions, handles, children, ...otherRouteProps } =
     route;
 
-  const childrenToRender = children?.map((route) => {
-    if (!route.permissions) {
-      // Allow permission inheritance.
-      route.permissions = permissions;
-    }
-    return route;
-  });
-
   if (permissions) {
     return (
       <ProtectedRoute
@@ -32,13 +24,13 @@ export const renderSingleRoute = (
         {...otherRouteProps}
         {...extraProps}
       >
-        {handleComponentField(component, { routes: childrenToRender })}
+        {handleComponentField(component, { routes: children })}
       </ProtectedRoute>
     );
   } else {
     return (
       <PublicRoute {...otherRouteProps} {...extraProps}>
-        {handleComponentField(component, { routes: childrenToRender })}
+        {handleComponentField(component, { routes: children })}
       </PublicRoute>
     );
   }
