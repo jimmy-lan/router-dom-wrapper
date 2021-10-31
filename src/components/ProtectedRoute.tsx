@@ -28,7 +28,9 @@ type Props = ProtectedRouteProps;
  * render inside of `<Route />`.
  * @param props Props for a `<ProtectedRoute />` component.
  */
-const useProtectedComponent = (props: PropsWithChildren<Props>) => {
+const useProtectedComponent = (
+  props: PropsWithChildren<Pick<Props, "permissions" | "handles">>
+) => {
   const { permissions, handles, children } = props;
   const {
     checkAuthentication,
@@ -54,7 +56,6 @@ const useProtectedComponent = (props: PropsWithChildren<Props>) => {
 
   return children;
 };
-
 /**
  * A route where the user must be authenticated to access. If the user is
  * not authenticated and attempted to access this route, the user will be
@@ -87,7 +88,11 @@ const ProtectedRoute: FunctionComponent<Props> = (
   props: PropsWithChildren<ProtectedRouteProps>
 ) => {
   const { permissions, handles, children, ...otherProps } = props;
-  const componentToRender = useProtectedComponent(props);
+  const componentToRender = useProtectedComponent({
+    permissions,
+    handles,
+    children,
+  });
 
   return <RouteWrapper {...otherProps}>{componentToRender}</RouteWrapper>;
 };
