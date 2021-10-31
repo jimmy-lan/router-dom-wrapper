@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { RouteEntry } from "../types";
 import { ProtectedRoute, PublicRoute } from "../components";
 import { handleComponentField } from "../utils/handleComponentField";
+import { useRouteDefaultsContext } from "../hooks";
 
 /**
  * Render one route based on configuration `route`.
@@ -15,10 +16,12 @@ export const renderSingleRoute = (
 ): ReactNode => {
   const { component, permissions, handles, children, ...otherRouteProps } =
     route;
+  const routeDefaults = useRouteDefaultsContext({ disableProviderCheck: true });
 
   if (permissions) {
     return (
       <ProtectedRoute
+        {...routeDefaults}
         permissions={permissions}
         handles={handles}
         {...otherRouteProps}
@@ -29,7 +32,7 @@ export const renderSingleRoute = (
     );
   } else {
     return (
-      <PublicRoute {...otherRouteProps} {...extraProps}>
+      <PublicRoute {...routeDefaults} {...otherRouteProps} {...extraProps}>
         {handleComponentField(component, { routes: children })}
       </PublicRoute>
     );
