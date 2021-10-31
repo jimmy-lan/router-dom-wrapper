@@ -39,7 +39,7 @@ const ConfiguredRoutes: FunctionComponent<Props> = (props) => {
         }
         return route;
       }),
-    [routes]
+    [routes, parentPath]
   );
 
   return (
