@@ -13,7 +13,7 @@ interface WrapperProviderProps {
   routeDefaults?: RouteDefaultsProviderProps;
 }
 
-export const createRouterWrapperProvider = (
+export const createComposeProvider = (
   providerProps: WrapperProviderProps
 ): FunctionComponent => {
   const PermissionsProvider = providerProps.permissions
