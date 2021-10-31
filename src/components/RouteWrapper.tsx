@@ -1,20 +1,17 @@
 import React, { FunctionComponent } from "react";
-import { Route, useRouteMatch } from "react-router-dom";
-import { joinPaths } from "../utils";
+import { Route } from "react-router-dom";
 import { RouteWrapperProps } from "../types";
 import { useRouteDefaultsContext } from "../hooks";
 
 const RouteWrapper: FunctionComponent<RouteWrapperProps> = (props) => {
-  const { path } = props;
+  const { children, ...otherProps } = props;
   const routeDefaults = useRouteDefaultsContext({ disableProviderCheck: true });
 
-  // This allows relative path syntax
-  const { path: parentPath } = useRouteMatch();
-  if (!props.path.startsWith(parentPath)) {
-    props.path = joinPaths(parentPath, path);
-  }
-
-  return <Route {...routeDefaults} {...props} />;
+  return (
+    <Route {...routeDefaults} {...otherProps}>
+      {children}
+    </Route>
+  );
 };
 
 export { RouteWrapper };
