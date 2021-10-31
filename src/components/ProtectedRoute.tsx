@@ -3,7 +3,7 @@ import { usePermissionsContext } from "../hooks";
 import { defaultValues } from "../config";
 import { PermissionsContextConfig, RouteWrapperProps } from "../types";
 import { handleRedirectOrComponentField } from "../utils";
-import { RouteWrapper } from "./RouteWrapper";
+import { Route } from "react-router-dom";
 
 interface ProtectedRouteProps extends RouteWrapperProps {
   /**
@@ -94,7 +94,7 @@ const ProtectedRoute: FunctionComponent<Props> = (
     children,
   });
 
-  return <RouteWrapper {...otherProps}>{componentToRender}</RouteWrapper>;
+  return <Route {...otherProps}>{componentToRender}</Route>;
 };
 
 export { ProtectedRoute };

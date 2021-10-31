@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
-import { RouteWrapper } from "./RouteWrapper";
 import { RouteWrapperProps } from "../types";
+import { Route } from "react-router-dom";
 
 const PublicRoute: FunctionComponent<RouteWrapperProps> = (props) => {
-  return <RouteWrapper {...props} />;
+  return <Route {...props} />;
 };
 
 export { PublicRoute };
