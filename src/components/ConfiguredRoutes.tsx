@@ -1,7 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useMemo } from "react";
 import { Switch } from "react-router";
 import { RouteEntry } from "../types";
 import { renderRoutes } from "../functions";
+import { useRouteMatch } from "react-router-dom";
+import { joinPaths } from "../utils";
 
 interface Props {
   /** Configured route entries array to use. */
@@ -27,10 +29,22 @@ const SwitchWrapper: FunctionComponent<{ disableSwitch: boolean | undefined }> =
 
 const ConfiguredRoutes: FunctionComponent<Props> = (props) => {
   const { routes, disableSwitch } = props;
+  const { path: parentPath } = useRouteMatch();
+
+  const routesToRender = useMemo(
+    () =>
+      routes.map((route) => {
+        if (!route.path.startsWith(parentPath)) {
+          route.path = joinPaths(parentPath, route.path);
+        }
+        return route;
+      }),
+    [routes]
+  );
 
   return (
     <SwitchWrapper disableSwitch={disableSwitch}>
-      {renderRoutes(routes)}
+      {renderRoutes(routesToRender)}
     </SwitchWrapper>
   );
 };
