@@ -61,10 +61,12 @@ The transpiled JavaScript code will live in the `dist` folder.
 ### Testing the library
 
 To test the library, create a React project somewhere else on your machine.
-Then, run `npm install <LIBRARY_PATH>` in the **new React project** folder. Be sure to substitute `<LIBRARY_PATH>` with a path to the folder storing React Permission Routing.
+Then, run `npm install <LIBRARY_PATH>` in the **new React project** folder.
+Be sure to substitute `<LIBRARY_PATH>` with a path to the folder storing React Permission Routing.
 
 Note that this can result in two React instances being run.
 Please run `npm link <REACT_PROJECT_PATH>/node_modules/react-router-dom <REACT_PROJECT_PATH>/node_modules/react` from the **root** of **this repo**.
+Be sure to replace `<REACT_PROJECT_PATH>` with a path to the React project that you created for testing.
 
 File watching and automatic project builds are not available at this time.
 You will need to rebuild the React Permission Routing library manually after you make code changes.
