@@ -9,7 +9,12 @@ The library also provides utilities to configure routes using object-based confi
 
 Displaying different routes based on user permissions is a common practice.
 However, I found myself spending time setting up this boilerplate logic across projects.
-This motivated me to extract the React Permission Routing library, so the conditional route rendering logic is readily available for new projects.
+This motivated me to extract the React Permission Routing library, so the conditional route rendering logic is readily available for projects.
+
+I love how we can configure routes statically as in React Router DOM v3.
+It made code splitting very easy, because I could initialize routing arrays in different files and join them together in an `index.js` or `index.ts` file.
+Despite the release of [React Router Config](https://www.npmjs.com/package/react-router-config), I stayed a bit opinionated and created my own.
+Rest assured, you don't need to accept my opinion when you use the React Permission Routing library. The library will work just fine with or without static route configurations.
 
 ## License: How you can use this code
 
