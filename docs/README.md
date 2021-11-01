@@ -23,10 +23,13 @@ _As a developer who contributes to open source, I sincerely hope that this work 
 
 ## Installation: The library and its peers
 
+> **Disclaimer:** At the moment, please note that the library only works with React Router DOM v5.
+> I _might_ update the library to support React Router DOM v6 when a stable release of React Router DOM v6 is available.
+
 React Permission Routing can be installed via npm.
 
 ```bash
-npm install --save @ly-public/router-dom-wrapper
+npm install --save react-permission-routing
 ```
 Please ensure that you are in a React project, and you have [React Router DOM](https://www.npmjs.com/package/react-router-dom) installed:
 
