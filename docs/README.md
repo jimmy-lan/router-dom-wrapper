@@ -14,21 +14,21 @@ This motivated me to extract the React Permission Routing library, so the condit
 ## License: How you can use this code
 
 This boilerplate code is available under the MIT license.
-You are welcome install this library in your projects as specified in the [Installation](#installation) section, or you can copy parts of code from the project should you need it.
+You are welcome install this library in your projects as specified in the [Installation](#installation-the-library-and-its-peers) section, or you can copy parts of code from the project should you need it.
 
 I strongly encourage you to read the MIT license text included in the file named `LICENSE` under the root of this repository even if you are familiar with MIT licenses.
 Thank you for respecting my work and effort!
 
 _As a developer who contributes to open source, I sincerely hope that this work will help your project and benefit the community._
 
-## Installation
+## Installation: The library and its peers
 
 React Permission Routing can be installed via npm.
 
 ```bash
 npm install --save @ly-public/router-dom-wrapper
 ```
-Please ensure that you have the peer dependency installed:
+Please ensure that you are in a React project, and you have [React Router DOM](https://www.npmjs.com/package/react-router-dom) installed:
 
 ```bash
 npm install --save react-router-dom
