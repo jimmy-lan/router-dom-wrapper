@@ -12,3 +12,9 @@ This library can be installed via npm.
 ```bash
 npm install --save @ly-public/router-dom-wrapper
 ```
+Please ensure that you have the peer dependency installed:
+
+```bash
+npm install --save react-router-dom
+```
+
