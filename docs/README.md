@@ -42,3 +42,34 @@ Please ensure that you are in a React project, and you have [React Router DOM](h
 npm install --save react-router-dom
 ```
 
+## Contribution: Guide to set up this repo
+
+Thank you for your interest in the React Permission Routing library!
+I appreciate your ideas or contributions.
+
+### Building the library
+
+To set up this project, clone the repository and run `npm install`.
+You can then build a local version of the library using
+
+```bash
+npm run build
+```
+
+The transpiled JavaScript code will live in the `dist` folder.
+
+### Testing the library
+
+To test the library, create a React project somewhere else on your machine.
+Then, run `npm install <LIBRARY_PATH>` in the **new React project** folder. Be sure to substitute `<LIBRARY_PATH>` with a path to the folder storing React Permission Routing.
+
+Note that this can result in two React instances being run.
+Please run `npm link <REACT_PROJECT_PATH>/node_modules/react-router-dom <REACT_PROJECT_PATH>/node_modules/react` from the **root** of **this repo**.
+
+File watching and automatic project builds are not available at this time.
+You will need to rebuild the React Permission Routing library manually after you make code changes.
+Run
+
+```bash
+npm run build
+```
