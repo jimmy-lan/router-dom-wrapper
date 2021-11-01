@@ -92,7 +92,7 @@ npm run build
 
 Author: Jimmy Lan
 
-LinkedIn: https://www.linkedin.com/in/jimmy-lan-0ba0a8194/
+LinkedIn: https://www.linkedin.com/in/jimmy-lan-0ba0a8194/.
 
 If you have a suggestion for improvements, please don't hesitate to contact me!
 If you have an awesome idea, I will be very interested to hear about it, and _maybe_ I can help you out a bit!
