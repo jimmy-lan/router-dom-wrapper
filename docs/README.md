@@ -5,6 +5,12 @@
 React Permission Routing is a thin layer around [React Router DOM](https://www.npmjs.com/package/react-router-dom) to achieve easy configuration of permission-based routing.
 The library also provides utilities to configure routes using object-based configurations, but please note that object-based route configurations will be added back in [React Router DOM v6](https://www.npmjs.com/package/react-router-dom).
 
+> On this page:
+> - [Purpose: Why I wrote this project](#purpose-why-i-wrote-this-project)
+> - [License: How you can use this code](#license-how-you-can-use-this-code)
+> - [Installation: The library and its peers](#installation-the-library-and-its-peers)
+> - [Contribution: Guide to set up this repo](#contribution-guide-to-set-up-this-repo)
+
 ## Purpose: Why I wrote this project
 
 Displaying different routes based on user permissions is a common practice.
