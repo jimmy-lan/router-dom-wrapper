@@ -1,5 +1,5 @@
 {
-  "name": "@ly-public/router-dom-wrapper",
+  "name": "react-permission-routing",
   "version": "0.6.1",
   "publishConfig": {
     "access": "public"
